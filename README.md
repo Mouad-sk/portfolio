@@ -1,12 +1,14 @@
-# 🛡️ Cybersecurity Engineer & SOC Analyst Portfolio
+# Cybersecurity Engineer & SOC Analyst Portfolio
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)](https://pages.github.com/)
+[![Live Site](https://img.shields.io/badge/Live_Site-00e5ff?style=for-the-badge&logo=githubpages&logoColor=black)](https://mouad-sk.github.io/portfolio/)
 
-A modern, high-performance personal portfolio built for Me.
+>  **Live Portfolio:** [mouad-sk.github.io/portfolio](https://mouad-sk.github.io/portfolio/)
+
+A modern, high-performance personal portfolio for a Final-Year IT Security Engineering Student and SOC Analyst. Designed with a **SOC Command Center / High-Tech Cyber-Dark** aesthetic, complete with real-time bilingual capabilities, ambient particles, interactive terminals, and animated UI micro-interactions.
 
 ---
 
@@ -35,27 +37,13 @@ A modern, high-performance personal portfolio built for Me.
 ### 5.  Interactive Cyber Terminal Widget
 - Simulated SOC terminal output featuring real-time telemetry, mock security tool verification commands (`./verify_pipeline.sh`), and dynamic system stats.
 
-### 6.  Dynamic Typewriter Effect
-- Cycles through primary roles, achievements (**Top 4% TryHackMe**, **Active CTF Player**), and specialties in both languages.
-
-### 7.  Categorized Project Showcase with Filtering
-- Tabbed filtering system (All, Detection & SIEM, Malware & Triage, Network & Infrastructure, Cryptography).
-- Direct repository links, technology tags, and MITRE ATT&CK correlation notes.
-
-### 8. Verified Certifications & Education Matrix
-- Interactive cards featuring vector SVG branding for Cisco, IBM, SkillFront, and Python Institute.
-- Standardized language proficiency badges (EF SET C1, Lenguia B2+, Native Arabic).
-
-### 9.  Dual-Language CV Download & In-Browser Preview
-- Direct download cards for English and French CV formats.
-- Integrated, pixel-perfect modal for instant preview with **1-click Print / Save as PDF** support.
 
 ---
 
 ##  Technologies & Stack
 
 | Technology | Purpose |
-| :--- | :--- |
+|:---|:---|
 | **HTML5** | Semantic structure, accessibility (ARIA), and SEO meta tags |
 | **Vanilla CSS3** | Custom design system, CSS Grid/Flexbox, custom properties, animations |
 | **Vanilla JavaScript (ES6+)** | State management, bilingual switching, canvas physics, DOM manipulation |
@@ -71,7 +59,7 @@ A modern, high-performance personal portfolio built for Me.
 ```text
 portfolio/
 ├── assets/
-│   └── cv/                      # Local storage for downloadable PDF CVs
+│   └── cv/                      # Downloadable PDF CVs (EN & FR)
 │       ├── CV_SAKHI_MOUAD_EN.pdf
 │       └── CV_SAKHI_MOUAD_FR.pdf
 ├── index.html                   # Core single-page application & style architecture
@@ -80,10 +68,10 @@ portfolio/
 
 ---
 
-##  Getting Started
+## Getting Started
 
 ### Local Preview
-No build tools, bundlers, or package managers are required. The portfolio runs natively in any modern browser:
+No build tools, bundlers, or package managers required. Opens directly in any modern browser:
 
 1. Clone the repository:
    ```bash
@@ -93,8 +81,9 @@ No build tools, bundlers, or package managers are required. The portfolio runs n
    ```bash
    cd portfolio
    ```
-3. Open `index.html` in your favorite web browser (or use VS Code Live Server).
+3. Open `index.html` in your browser (or use VS Code Live Server).
 
+---
 
 ##  License
 This project is open-source and available under the [MIT License](LICENSE).
