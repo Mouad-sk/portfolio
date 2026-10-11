@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakhi Mouad | IT Security Engineer & SOC Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Sakhi Mouad - Final-Year IT Security Engineering Student, Top 4% TryHackMe, CTF Player specializing in SOC Operations, SIEM (Splunk), Threat Detection, Network Security, and Applied Cryptography.">
+    <meta name="keywords" content="Sakhi Mouad, Cybersecurity, SOC Analyst, SIEM, Splunk, MITRE ATT&CK, Threat Hunting, TryHackMe Top 4%, CTF Player, Pentesting, Malware Analysis, IT Security, Morocco">
+    <meta name="author" content="Sakhi Mouad">
+
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Space Grotesk, Outfit & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* SOC Command Center / High-Tech Cyber-Dark Palette */
+            --bg-deep: #090c12;
+            --bg-surface: #0e131d;
+            --bg-card: #141924;
+            --bg-card-hover: #1b2232;
+            --accent-cyan: #00e5ff;
+            --accent-cyan-soft: rgba(0, 229, 255, 0.12);
+            --accent-cyan-glow: rgba(0, 229, 255, 0.25);
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-blue: #38bdf8;
+            --text-pure: #ffffff;
+            --text-body: #cbd5e1;
+            --text-muted: #7d8b9f;
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --border-cyan: rgba(0, 229, 255, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        /* Tasteful Micro-Animations & Smooth Scroll Reveal */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-item.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-item {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-pure);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Subtle Ambient Celestial Dust & Snow Canvas (Slightly more visible, gentle & non-intrusive) */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.62;
+        }
+
+        /* Soft Cyber Radial Glows */
+        .ambient-glow-cyan {
+            position: fixed;
+            top: -150px;
+            right: -100px;
+            width: 550px;
+            height: 550px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-blue {
+            position: fixed;
+            bottom: -150px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Navigation */
+        .navbar {
+            background: rgba(9, 12, 18, 0.94) !important;
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 21px;
+            color: var(--text-pure) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand i {
+            color: var(--accent-cyan);
+            font-size: 20px;
+        }
+
+        .brand-badge {
+            background: var(--accent-cyan-soft);
+            border: 1px solid var(--border-cyan);
+            color: var(--accent-cyan);
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        .navbar-nav {
+            position: relative;
+        }
+
+        .navbar-nav .nav-link {
+            color: #94a3b8 !important;
+            font-weight: 500;
+            font-size: 14.5px;
+            margin: 0 4px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            white-space: nowrap !important; /* Prevents 2-line break on French "À Propos" */
+            transition: color 0.25s ease, background 0.25s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Smooth Moving Blue Glowing Indicator Line */
+        .nav-glow-indicator {
+            position: absolute;
+            bottom: -3px;
+            height: 2.5px;
+            background: var(--accent-cyan);
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px rgba(0, 229, 255, 0.85);
+            transition: left 0.32s cubic-bezier(0.22, 1, 0.36, 1), width 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            left: 0;
+            width: 0;
+        }
+
+        @media (max-width: 991px) {
+            .nav-glow-indicator {
+                display: none !important;
+            }
+            .navbar-nav .nav-link.active {
+                border-left: 3px solid var(--accent-cyan);
+                padding-left: 14px;
+                background: rgba(0, 229, 255, 0.06);
+            }
+        }
+
+        /* Language Switcher */
+        .lang-switch-wrap {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            padding: 2px;
+            border-radius: 30px;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-cyan);
+            color: #090c12;
+            box-shadow: 0 2px 8px var(--accent-cyan-glow);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #ffffff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 130px 0 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 12.5px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+
+        .hero-greeting {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-name {
+            font-size: 58px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -1.5px;
+            color: var(--text-pure);
+        }
+
+        .hero-name span {
+            color: var(--accent-cyan);
+        }
+
+        /* Dynamic Typewriter Title */
+        .typewriter-wrap {
+            font-size: 25px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            min-height: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .typewriter-text {
+            border-right: 2px solid var(--accent-cyan);
+            padding-right: 5px;
+            white-space: nowrap;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-color: var(--accent-cyan); }
+            50% { border-color: transparent; }
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-body);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .hero-badges-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 34px;
+        }
+
+        .hero-badge-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .hero-badge-pill i {
+            color: var(--accent-cyan);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        /* High-Tech Cyan Pill Button */
+        .btn-cyber-primary {
+            background: var(--accent-cyan);
+            color: #090c12;
+            font-weight: 700;
+            padding: 13px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px var(--accent-cyan-glow);
+            border: none;
+        }
+
+        .btn-cyber-primary:hover {
+            background: #40ebff;
+            color: #090c12;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.45);
+        }
+
+        /* High-Tech Outline Pill Button */
+        .btn-cyber-outline {
+            background: transparent;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cyber-outline:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-cyan);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .social-link-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 17px;
+            transition: all 0.25s ease;
+        }
+
+        .social-link-circle:hover {
+            background: var(--accent-cyan);
+            color: #090c12;
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--accent-cyan-glow);
+        }
+
+        /* Compact, Scaled Cyber Terminal */
+        .cyber-terminal {
+            background: #0e121a;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.65);
+            max-width: 440px;
+            margin-left: auto;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-header {
+            background: #141822;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot-red { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; }
+        .dot-yellow { width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; }
+        .dot-green { width: 10px; height: 10px; border-radius: 50%; background: #10b981; }
+
+        .terminal-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .terminal-body {
+            padding: 16px 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .t-cmd { color: var(--accent-cyan); margin-bottom: 6px; }
+        .t-res { color: #8e9bb0; margin-bottom: 12px; }
+        .t-highlight { color: #ffffff; font-weight: 600; }
+        .t-green { color: #34d399; }
+
+        /* Unified High-Tech Dark Section Styles */
+        section {
+            position: relative;
+            z-index: 2;
+            padding: 95px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-header {
+            margin-bottom: 46px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-cyan);
+            background: var(--accent-cyan-soft);
+            border: 1px solid var(--border-cyan);
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 650px;
+        }
+
+        /* Unified Dark Card */
+        .dark-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dark-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Education Items */
+        .edu-item {
+            border-left: 2px solid var(--accent-cyan);
+            padding-left: 18px;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .edu-degree {
+            font-size: 16.5px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 2px 0 3px;
+        }
+
+        .edu-school {
+            color: var(--text-muted);
+            font-size: 13.5px;
+        }
+
+        /* Experience Timeline */
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .exp-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        .exp-card.pfa-featured {
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .exp-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .exp-role {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .exp-company {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 14.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exp-tag-pill {
+            background: var(--accent-cyan-soft);
+            border: 1px solid var(--border-cyan);
+            color: var(--accent-cyan);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+        }
+
+        .exp-date {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 18px;
+        }
+
+        .exp-bullets li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            font-size: 14.5px;
+            line-height: 1.6;
+        }
+
+        .exp-bullets li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .tech-pill-dark {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: #cbd5e1;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        /* Projects Section */
+        .project-filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: #94a3b8;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin: 0 6px 10px 0;
+        }
+
+        .project-filter-btn.active, .project-filter-btn:hover {
+            background: var(--accent-cyan);
+            color: #090c12;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 4px 15px var(--accent-cyan-glow);
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .project-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--accent-cyan-soft);
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .project-link-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .project-link-btn:hover {
+            background: var(--accent-cyan);
+            color: #090c12;
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .project-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .project-card-desc {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        /* Skills Matrix */
+        .skill-group-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .skill-group-box:hover {
+            border-color: var(--border-cyan);
+            transform: translateY(-3px);
+        }
+
+        .skill-group-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-group-title i {
+            color: var(--accent-cyan);
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: #cbd5e1;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .skill-pill:hover {
+            background: var(--accent-cyan);
+            color: #090c12;
+            border-color: var(--accent-cyan);
+        }
+
+        /* Certifications Grid with Logos */
+        .cert-card-v2 {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 18px 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card-v2:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .cert-logo-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 8px;
+        }
+
+        .cert-logo-wrap svg, .cert-logo-wrap i {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cert-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+
+        .cert-info p {
+            color: var(--accent-cyan);
+            font-size: 12.5px;
+            font-weight: 600;
+            margin-bottom: 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Language Card */
+        .lang-card-v2 {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .lang-card-v2:hover {
+            border-color: var(--border-cyan);
+            transform: translateY(-3px);
+        }
+
+        .badge-certified {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-cyan-soft);
+            color: var(--accent-cyan);
+            border: 1px solid var(--border-cyan);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Download CV Section */
+        .cv-box-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 34px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-box-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-cyan);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cv-box-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cv-box-card:hover::before {
+            opacity: 1;
+        }
+
+        .cv-box-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .cv-box-sub {
+            color: var(--accent-cyan);
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 14px;
+        }
+
+        .cv-box-desc {
+            color: #94a3b8;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        /* Contact Section */
+        .contact-box-dark {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 34px;
+        }
+
+        .contact-info-pill {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--accent-cyan-soft);
+            color: var(--accent-cyan);
+            border: 1px solid var(--border-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .contact-input-dark {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: #ffffff;
+            padding: 13px 18px;
+            font-size: 14.5px;
+            width: 100%;
+            margin-bottom: 16px;
+            transition: all 0.25s ease;
+        }
+
+        .contact-input-dark:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-cyan);
+            outline: none;
+            box-shadow: 0 0 10px var(--accent-cyan-glow);
+        }
+
+        .contact-input-dark::placeholder {
+            color: #64748b;
+        }
+
+        /* Footer */
+        footer {
+            background: #06080d;
+            color: #64748b;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 13.5px;
+        }
+
+        /* Printable CV Modal */
+        .modal-cv-dialog {
+            max-width: 900px;
+        }
+
+        .modal-cv-content {
+            background: #0f141f;
+            color: #f1f5f9;
+            border: 1px solid var(--border-cyan);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .modal-cv-header {
+            background: #090c12;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cv-paper {
+            background: #ffffff;
+            color: #1e293b;
+            padding: 38px;
+            font-family: 'Outfit', sans-serif;
+            border-radius: 8px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .cv-paper h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .cv-paper .cv-sec-title {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 3px;
+            margin: 16px 0 10px;
+        }
+
+        .cv-paper p, .cv-paper li {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #334155;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printable-cv-area, #printable-cv-area * { visibility: visible; }
+            #printable-cv-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: #fff !important;
+                color: #000 !important;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero-name { font-size: 44px; }
+            .typewriter-wrap { font-size: 20px; }
+            .cyber-terminal { margin-top: 20px; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Subtle Particle Background (Ambient Stars & Snow Dust) -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Ambient Glow Highlights -->
+    <div class="ambient-glow-cyan"></div>
+    <div class="ambient-glow-blue"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-shield-halved"></i>
+                <span>Sakhi Mouad</span>
+                <span class="brand-badge">SIT & SOC</span>
+            </a>
+            
+            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-label="Toggle navigation">
+                <i class="fas fa-bars-staggered"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto align-items-lg-center" id="navLinksList">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home" data-en="Home" data-fr="Accueil">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-en="About" data-fr="À Propos">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience" data-en="Experience" data-fr="Expérience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects" data-en="Projects" data-fr="Projets">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills" data-en="Skills" data-fr="Compétences">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certifications" data-en="Certifications" data-fr="Certifications">Certifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download-cv"><i class="fas fa-file-arrow-down me-1" style="color: var(--accent-cyan);"></i> <span data-en="CV" data-fr="CV">CV</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+                    </li>
+                    <!-- Smooth Moving Glowing Blue Indicator -->
+                    <span class="nav-glow-indicator" id="navGlowIndicator"></span>
+                </ul>
+
+                <!-- Language Switcher -->
+                <div class="lang-switch-wrap">
+                    <button class="lang-btn active" id="btn-lang-en" onclick="changeLanguage('en')">
+                        <span>🇬🇧</span> EN
+                    </button>
+                    <button class="lang-btn" id="btn-lang-fr" onclick="changeLanguage('fr')">
+                        <span>🇫🇷</span> FR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="hero-status-pill">
+                        <span class="status-dot"></span>
+                        <span data-en="SEEKING PFE INTERNSHIP (CYBERSECURITY & SOC)" data-fr="RECHERCHE D'UN STAGE PFE (CYBERSÉCURITÉ & SOC)">SEEKING PFE INTERNSHIP (CYBERSECURITY & SOC)</span>
+                    </div>
+
+                    <div class="hero-greeting" data-en="Hello, I am" data-fr="Bonjour, je suis">Hello, I am</div>
+                    <h1 class="hero-name">SAKHI <span>MOUAD</span></h1>
+                    
+                    <!-- Dynamic Typewriter Title (Features Top 4% TryHackMe & CTF Player Here) -->
+                    <div class="typewriter-wrap">
+                        <span class="typewriter-text" id="typewriterTarget">Final-Year IT Security Engineering Student</span>
+                    </div>
+
+                    <p class="hero-desc" data-en="Final-year engineering student in IT Security (FST Marrakech, Cadi Ayyad University). Active CTF player and ranked in the Top 4% on TryHackMe. Specializing in SOC operations, SIEM detection, MITRE ATT&CK correlation, and offensive/defensive cybersecurity." data-fr="Étudiant ingénieur en dernière année Sécurité Information Technologie (FST Marrakech, Université Cadi Ayyad). Joueur CTF actif et classé dans le Top 4% sur TryHackMe. Spécialisé en opérations SOC, détection SIEM, corrélation MITRE ATT&CK et sécurité offensive/défensive.">
+                        Final-year engineering student in IT Security (FST Marrakech, Cadi Ayyad University). Active CTF player and ranked in the Top 4% on TryHackMe. Specializing in SOC operations, SIEM detection, MITRE ATT&CK correlation, and offensive/defensive cybersecurity.
+                    </p>
+
+                    <div class="hero-badges-row">
+                        <div class="hero-badge-pill">
+                            <i class="fas fa-location-dot"></i>
+                            <span data-en="Marrakech, Morocco" data-fr="Marrakech, Maroc">Marrakech, Morocco</span>
+                        </div>
+                        <div class="hero-badge-pill">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>FST Marrakech (UCA)</span>
+                        </div>
+                        <div class="hero-badge-pill">
+                            <i class="fas fa-shield-virus"></i>
+                            <span>SOC · SIEM · MITRE ATT&CK</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn-cyber-primary">
+                            <span data-en="View My Work" data-fr="Voir Mon Travail">View My Work</span>
+                            <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                        <a href="#download-cv" class="btn-cyber-outline">
+                            <i class="fas fa-download"></i>
+                            <span data-en="Download CV" data-fr="Télécharger CV">Download CV</span>
+                        </a>
+                        <a href="#contact" class="btn-cyber-outline">
+                            <span data-en="Contact Me" data-fr="Me Contacter">Contact Me</span>
+                        </a>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="https://github.com/Mouad-sk" target="_blank" class="social-link-circle" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mouad-sakhi-223265330" target="_blank" class="social-link-circle" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:m.sakhi7563@uca.ac.ma" class="social-link-circle" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/212605115256" target="_blank" class="social-link-circle" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Compact & Elegant Terminal Card -->
+                <div class="col-lg-5">
+                    <div class="cyber-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="terminal-title">mouad@sec-analyst:~</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="t-cmd">$ whoami</div>
+                            <div class="t-res">Sakhi Mouad [SOC & IT Security Engineer]</div>
+
+                            <div class="t-cmd">$ cat status.json</div>
+                            <div class="t-res">
+                                {<br>
+                                &nbsp;&nbsp;"rank": "<span class="t-highlight">Top 4% on TryHackMe</span>",<br>
+                                &nbsp;&nbsp;"ctf": "Active Player",<br>
+                                &nbsp;&nbsp;"education": "Cycle Ingénieur (SIT)",<br>
+                                &nbsp;&nbsp;"focus": ["SOC", "SIEM", "Threat Detection"]<br>
+                                }
+                            </div>
+
+                            <div class="t-cmd">$ ./verify_pipeline.sh</div>
+                            <div class="t-res">
+                                <span class="t-green">[+] SIEM Rules: VALIDATED</span><br>
+                                <span class="t-green">[+] ML Tunneling Detection: ACTIVE</span><br>
+                                <span class="t-highlight">[*] Security Status: ALL SYSTEMS GO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Profile & Background" data-fr="Profil & Parcours">Profile & Background</span>
+                <h2 class="section-title" data-en="About Me" data-fr="À Propos de Moi">About Me</h2>
+                <p class="section-desc" data-en="Engineering student passionate about defensive operations, attack analysis, and securing modern IT assets." data-fr="Élève ingénieur passionné par les opérations défensives, l'analyse d'attaques et la sécurisation des infrastructures numériques.">
+                    Engineering student passionate about defensive operations, attack analysis, and securing modern IT assets.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="dark-card">
+                        <h3 class="font-heading mb-3" style="font-size: 22px;">
+                            <i class="fas fa-user-shield me-2" style="color: var(--accent-cyan);"></i>
+                            <span data-en="Professional Profile" data-fr="Profil Professionnel">Professional Profile</span>
+                        </h3>
+                        <p style="font-size: 15.5px; color: var(--text-body); line-height: 1.8;" data-en="Final-year engineering student in IT Security (FST Marrakech, Cadi Ayyad University), seeking a final-year internship in cybersecurity to put my skills into practice within an expert team. Active CTF player ranked in the Top 4% on TryHackMe. Combining rigorous practice in offensive and defensive security, network security, incident detection and investigation (SIEM, SOC), and malware analysis. Rigorous, curious, and eager to learn more." data-fr="Étudiant ingénieur en dernière année Sécurité Information Technologie (FST Marrakech, Université Cadi Ayyad), à la recherche d'un stage de fin d'études en cybersécurité afin de mettre mes compétences en pratique au sein d’une équipe d’expertise. Joueur CTF actif classé dans le Top 4% sur TryHackMe. Combinant une pratique rigoureuse de la sécurité offensive et défensive, sécurité réseau, détection et investigation d'incidents (SIEM, SOC) et analyse de malwares. Rigoureux, curieux et motivé à apprendre plus.">
+                            Final-year engineering student in IT Security (FST Marrakech, Cadi Ayyad University), seeking a final-year internship in cybersecurity to put my skills into practice within an expert team. Active CTF player ranked in the Top 4% on TryHackMe. Combining rigorous practice in offensive and defensive security, network security, incident detection and investigation (SIEM, SOC), and malware analysis. Rigorous, curious, and eager to learn more.
+                        </p>
+
+                        <div class="mt-4 pt-3 border-top" style="border-color: var(--border-subtle) !important;">
+                            <h5 class="mb-3" style="font-size: 15px; font-weight: 700; color: #ffffff;" data-en="Key Strengths & Values" data-fr="Atouts & Qualités">Key Strengths & Values</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="skill-pill"><i class="fas fa-check me-1" style="color: var(--accent-cyan);"></i> <span data-en="Rigor" data-fr="Rigueur">Rigor</span></span>
+                                <span class="skill-pill"><i class="fas fa-magnifying-glass me-1" style="color: var(--accent-blue);"></i> <span data-en="Curiosity" data-fr="Curiosité">Curiosity</span></span>
+                                <span class="skill-pill"><i class="fas fa-bolt me-1" style="color: var(--accent-cyan);"></i> <span data-en="Autonomy" data-fr="Autonomie">Autonomy</span></span>
+                                <span class="skill-pill"><i class="fas fa-users me-1" style="color: #60a5fa;"></i> <span data-en="Teamwork" data-fr="Travail en équipe">Teamwork</span></span>
+                                <span class="skill-pill"><i class="fas fa-clock me-1" style="color: #34d399;"></i> <span data-en="Punctuality" data-fr="Ponctualité">Punctuality</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="dark-card">
+                        <h3 class="font-heading mb-4" style="font-size: 22px;">
+                            <i class="fas fa-graduation-cap me-2" style="color: var(--accent-blue);"></i>
+                            <span data-en="Education & Formation" data-fr="Formation Académique">Education & Formation</span>
+                        </h3>
+
+                        <div class="edu-item">
+                            <div class="edu-year">2024 – Present / Présent</div>
+                            <div class="edu-degree" data-en="Engineering Degree — Information Technology Security (SIT)" data-fr="Cycle Ingénieur — Sécurité de l'Information et Technologie (SIT)">Engineering Degree — Information Technology Security (SIT)</div>
+                            <div class="edu-school">FST Marrakech, Université Cadi Ayyad</div>
+                        </div>
+
+                        <div class="edu-item">
+                            <div class="edu-year">2022 – 2024</div>
+                            <div class="edu-degree" data-en="DEUST MIPC (Maths, Computer Science, Physics, Chemistry)" data-fr="DEUST MIPC (Mathématiques, Informatique, Physique et Chimie)">DEUST MIPC (Maths, Computer Science, Physics, Chemistry)</div>
+                            <div class="edu-school">FST Marrakech, Université Cadi Ayyad</div>
+                        </div>
+
+                        <div class="edu-item mb-0">
+                            <div class="edu-year">2022</div>
+                            <div class="edu-degree" data-en="International Baccalaureate — Mathematical Sciences B" data-fr="Baccalauréat International — Sciences Mathématiques B">International Baccalaureate — Mathematical Sciences B</div>
+                            <div class="edu-school">Lycée Abi El Abbas Sebti, Marrakech</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Professional Experience" data-fr="Expérience Professionnelle">Professional Experience</span>
+                <h2 class="section-title" data-en="Work History & Internships" data-fr="Parcours & Expériences Professionnelles">Work History & Internships</h2>
+                <p class="section-desc" data-en="Hands-on experience in SOC operations, threat intelligence correlation, and web application hardening." data-fr="Expérience concrète en opérations SOC, corrélation de renseignements sur les menaces et durcissement web.">
+                    Hands-on experience in SOC operations, threat intelligence correlation, and web application hardening.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- PFA Internship -->
+                    <div class="exp-card pfa-featured">
+                        <div class="exp-top-bar">
+                            <div>
+                                <h3 class="exp-role" data-en="PFA Internship — SOC Operations, SIEM & Threat Detection" data-fr="Stage PFA — Opérations SOC, SIEM & Détection de Menaces">
+                                    PFA Internship — SOC Operations, SIEM & Threat Detection
+                                </h3>
+                                <div class="exp-company">
+                                    <i class="fas fa-building-shield"></i>
+                                    <span>Securozen · Remote</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="exp-tag-pill" data-en="PFA INTERNSHIP" data-fr="STAGE PFA">PFA INTERNSHIP</span>
+                                <span class="exp-date" data-en="Aug – Sept 2026" data-fr="Août – Sept. 2026">Aug – Sept 2026</span>
+                            </div>
+                        </div>
+
+                        <ul class="exp-bullets">
+                            <li data-en="Automated security log analysis (parsing, IOC enrichment, event correlation) to generate MITRE ATT&CK-mapped incidents." data-fr="Automatisé l'analyse des logs de sécurité (parsing, enrichissement IOC, corrélation d'événements) pour générer des incidents mappés MITRE ATT&CK.">
+                                Automated security log analysis (parsing, IOC enrichment, event correlation) to generate MITRE ATT&CK-mapped incidents.
+                            </li>
+                            <li data-en="Implemented attack-path prediction with risk scoring to assess potential lateral movement and impact across enterprise assets." data-fr="Implémenté une prédiction de chemins d'attaque avec scoring de risque pour évaluer les mouvements latéraux potentiels et leur impact sur les actifs.">
+                                Implemented attack-path prediction with risk scoring to assess potential lateral movement and impact across enterprise assets.
+                            </li>
+                            <li data-en="Integrated centralized SQLite storage, a REST API, a monitoring dashboard, and automated incident reporting." data-fr="Intégré un stockage centralisé SQLite, une API REST, un dashboard de supervision et un reporting d'incidents automatisé.">
+                                Integrated centralized SQLite storage, a REST API, a monitoring dashboard, and automated incident reporting.
+                            </li>
+                            <li data-en="Validated the end-to-end detection pipeline using real authentication logs generated in an isolated lab simulation." data-fr="Validé le pipeline de détection de bout en bout à l'aide de logs d'authentification réels générés dans un lab isolé.">
+                                Validated the end-to-end detection pipeline using real authentication logs generated in an isolated lab simulation.
+                            </li>
+                        </ul>
+
+                        <div>
+                            <span class="tech-pill-dark">SOC Operations</span>
+                            <span class="tech-pill-dark">SIEM</span>
+                            <span class="tech-pill-dark">MITRE ATT&CK</span>
+                            <span class="tech-pill-dark">IOC Enrichment</span>
+                            <span class="tech-pill-dark">REST API</span>
+                            <span class="tech-pill-dark">SQLite</span>
+                            <span class="tech-pill-dark">Threat Detection</span>
+                        </div>
+                    </div>
+
+                    <!-- Initiation Internship -->
+                    <div class="exp-card">
+                        <div class="exp-top-bar">
+                            <div>
+                                <h3 class="exp-role" data-en="Introductory Internship — Web Development & IT Security" data-fr="Stage d'Initiation — Développement Web et Sécurité Informatique">
+                                    Introductory Internship — Web Development & IT Security
+                                </h3>
+                                <div class="exp-company">
+                                    <i class="fas fa-shield"></i>
+                                    <span>ORIENTAL GROUP · Marrakech, Maroc</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="exp-tag-pill" data-en="INTERNSHIP" data-fr="STAGE D'INITIATION">INTERNSHIP</span>
+                                <span class="exp-date" data-en="Jun – Jul 2025" data-fr="Juin – Juil. 2025">Jun – Jul 2025</span>
+                            </div>
+                        </div>
+
+                        <ul class="exp-bullets">
+                            <li data-en="Contributed to the website's security assessment and identified risks related to the themes, extensions, and components used." data-fr="Contribué à l'évaluation de la sécurité du site web et à l'identification des risques liés aux thèmes, extensions et composants utilisés.">
+                                Contributed to the website's security assessment and identified risks related to the themes, extensions, and components used.
+                            </li>
+                            <li data-en="Implemented application security best practices and configuration hardening to reduce the attack surface." data-fr="Mis en œuvre des bonnes pratiques de sécurité applicative et de durcissement de la configuration afin de réduire la surface d'attaque.">
+                                Implemented application security best practices and configuration hardening to reduce the attack surface.
+                            </li>
+                            <li data-en="Participated in remediating identified issues, strengthening the website's reliability and security." data-fr="Participé à la remédiation des anomalies identifiées, renforçant la fiabilité et la sécurité du site web.">
+                                Participated in remediating identified issues, strengthening the website's reliability and security.
+                            </li>
+                        </ul>
+
+                        <div>
+                            <span class="tech-pill-dark">Web Security</span>
+                            <span class="tech-pill-dark">Vulnerability Assessment</span>
+                            <span class="tech-pill-dark">Hardening</span>
+                            <span class="tech-pill-dark">Remediation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Portfolio Projects" data-fr="Projets Clés">Portfolio Projects</span>
+                <h2 class="section-title" data-en="Featured Projects & Security Labs" data-fr="Projets & Réalisations Techniques">Featured Projects & Security Labs</h2>
+                <p class="section-desc" data-en="Engineered security tools, machine learning detection pipelines, threat intelligence libraries, and network topologies." data-fr="Outils de sécurité, pipelines de détection basés sur le Machine Learning, bibliothèques de Threat Hunting et architectures réseau.">
+                    Engineered security tools, machine learning detection pipelines, threat intelligence libraries, and network topologies.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="mb-4">
+                <button class="project-filter-btn active" data-filter="all" data-en="All Projects" data-fr="Tous les Projets">All Projects</button>
+                <button class="project-filter-btn" data-filter="soc" data-en="SOC & Threat Hunting" data-fr="SOC & Threat Hunting">SOC & Threat Hunting</button>
+                <button class="project-filter-btn" data-filter="tools" data-en="Malware & Security Tools" data-fr="Malwares & Outils">Malware & Security Tools</button>
+                <button class="project-filter-btn" data-filter="network" data-en="Networks & Systems" data-fr="Réseaux & Systèmes">Networks & Systems</button>
+                <button class="project-filter-btn" data-filter="crypto" data-en="Cryptography & AI" data-fr="Cryptographie & IA">Cryptography & AI</button>
+            </div>
+
+            <div class="row g-4" id="projectsGrid">
+                <!-- 1. DNS Exfil Detect -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="soc">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-network-wired"></i></div>
+                                <a href="https://github.com/Mouad-sk/DNS_Exfil_Detect" target="_blank" class="project-link-btn" title="GitHub Repository">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="project-card-title">DNS Exfil Detect</h3>
+                            <p class="project-card-desc" data-en="DNS tunneling detector combining a rule engine and an ML model (RandomForest/XGBoost) on per-query and sliding-window features; SIEM export (CEF/syslog), REST API, monitoring dashboard." data-fr="Détecteur de tunneling DNS combinant moteur de règles et modèle ML (RandomForest/XGBoost) sur des features par requête et par fenêtre glissante ; export SIEM (CEF/syslog), API REST, dashboard de supervision.">
+                                DNS tunneling detector combining a rule engine and an ML model (RandomForest/XGBoost) on per-query and sliding-window features; SIEM export (CEF/syslog), REST API, monitoring dashboard.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Python</span>
+                            <span class="tech-pill-dark">Scapy</span>
+                            <span class="tech-pill-dark">Scikit-learn</span>
+                            <span class="tech-pill-dark">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Yara-Triage -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="tools">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-bug"></i></div>
+                                <a href="https://github.com/Mouad-sk/Yara_Project" target="_blank" class="project-link-btn" title="GitHub Repository">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="project-card-title">Yara-Triage</h3>
+                            <p class="project-card-desc" data-en="Static malware triage tool: hashing, PE structure analysis, IOC extraction, YARA rules, and an explainable risk score mapped to MITRE ATT&CK." data-fr="Outil de triage statique de malwares : hachage, analyse de structure PE, extraction d'IOC, règles YARA et score de risque explicable avec mapping MITRE ATT&CK.">
+                                Static malware triage tool: hashing, PE structure analysis, IOC extraction, YARA rules, and an explainable risk score mapped to MITRE ATT&CK.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Python</span>
+                            <span class="tech-pill-dark">YARA</span>
+                            <span class="tech-pill-dark">PE Analysis</span>
+                            <span class="tech-pill-dark">MITRE ATT&CK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Threat Hunting Library -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="soc">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-crosshairs"></i></div>
+                                <a href="https://github.com/Mouad-sk/Threat_Hunting_Library" target="_blank" class="project-link-btn" title="GitHub Repository">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="project-card-title">Threat Hunting Library</h3>
+                            <p class="project-card-desc" data-en="Library of ten MITRE ATT&CK-mapped hunts with Sigma rules, cross-platform queries (Splunk / KQL / EQL), and an automated validator." data-fr="Bibliothèque de dix hunts mappés MITRE ATT&CK avec règles Sigma, requêtes multi-plateformes (Splunk / KQL / EQL) et validateur automatisé.">
+                                Library of ten MITRE ATT&CK-mapped hunts with Sigma rules, cross-platform queries (Splunk / KQL / EQL), and an automated validator.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Sigma</span>
+                            <span class="tech-pill-dark">Splunk</span>
+                            <span class="tech-pill-dark">KQL</span>
+                            <span class="tech-pill-dark">EQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Python Security Toolkit -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="tools">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-toolbox"></i></div>
+                                <a href="https://github.com/Mouad-sk/Security_Toolkit" target="_blank" class="project-link-btn" title="GitHub Repository">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="project-card-title" data-en="Python Security Toolkit" data-fr="Boîte à outils Python sécurité">Python Security Toolkit</h3>
+                            <p class="project-card-desc" data-en="Authentication log analyzer, network scanner, directory brute-force, password strength checker, file encryption tool." data-fr="Analyseur de logs d'authentification, scanner réseau, outil de brute-force de répertoires, vérificateur de robustesse de mots de passe, chiffrement de fichiers.">
+                                Authentication log analyzer, network scanner, directory brute-force, password strength checker, file encryption tool.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Python</span>
+                            <span class="tech-pill-dark">Log Analysis</span>
+                            <span class="tech-pill-dark">Port Scanner</span>
+                            <span class="tech-pill-dark">Crypto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Secure Enterprise Network -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="network">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-server"></i></div>
+                                <span class="badge bg-secondary opacity-75 font-monospace">Lab Setup</span>
+                            </div>
+                            <h3 class="project-card-title" data-en="Secure Enterprise Network" data-fr="Architecture Réseau Sécurisée">Secure Enterprise Network</h3>
+                            <p class="project-card-desc" data-en="Deployed a segmented network infrastructure (DMZ, NAT): pfSense firewall, site-to-site OpenVPN (TLS/certificates), Suricata IDS/IPS, hardened Apache and vsftpd services." data-fr="Déployé une infrastructure réseau segmentée (DMZ, NAT) : pare-feu pfSense, VPN site-à-site OpenVPN (TLS/certificats), IDS/IPS Suricata, services Apache et vsftpd sécurisés.">
+                                Deployed a segmented network infrastructure (DMZ, NAT): pfSense firewall, site-to-site OpenVPN (TLS/certificates), Suricata IDS/IPS, hardened Apache and vsftpd services.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">pfSense</span>
+                            <span class="tech-pill-dark">OpenVPN TLS</span>
+                            <span class="tech-pill-dark">Suricata</span>
+                            <span class="tech-pill-dark">DMZ/NAT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Windows Server 2019 Admin -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="network">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fab fa-windows"></i></div>
+                                <span class="badge bg-secondary opacity-75 font-monospace">SysAdmin</span>
+                            </div>
+                            <h3 class="project-card-title">Windows Server 2019 Admin</h3>
+                            <p class="project-card-desc" data-en="Managed local accounts/groups and role-based NTFS permissions; deployed DHCP, DNS (forward/reverse zones), and IIS roles." data-fr="Administré comptes/groupes locaux et permissions NTFS par rôle ; déployé les rôles DHCP, DNS (zones directes/inversées) et IIS.">
+                                Managed local accounts/groups and role-based NTFS permissions; deployed DHCP, DNS (forward/reverse zones), and IIS roles.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">PowerShell</span>
+                            <span class="tech-pill-dark">Active Directory</span>
+                            <span class="tech-pill-dark">DHCP/DNS</span>
+                            <span class="tech-pill-dark">IIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Zero-Knowledge Proof (Schnorr) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="crypto">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-key"></i></div>
+                                <span class="badge bg-secondary opacity-75 font-monospace">Cryptography</span>
+                            </div>
+                            <h3 class="project-card-title" data-en="Zero-Knowledge Proof (Schnorr)" data-fr="Preuve à Divulgation Nulle (Schnorr)">Zero-Knowledge Proof (Schnorr)</h3>
+                            <p class="project-card-desc" data-en="Implemented a Zero-Knowledge Proof protocol (Schnorr) and simulated a replay attack to validate the cryptographic robustness of the authentication scheme." data-fr="Implémenté un protocole Zero-Knowledge Proof (Schnorr) et simulé une attaque par rejeu pour valider la robustesse cryptographique du schéma d'authentification.">
+                                Implemented a Zero-Knowledge Proof protocol (Schnorr) and simulated a replay attack to validate the cryptographic robustness of the authentication scheme.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Kali Linux</span>
+                            <span class="tech-pill-dark">Schnorr ZKP</span>
+                            <span class="tech-pill-dark">Replay Defense</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. SDN Software Defined Networking -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="network">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-sitemap"></i></div>
+                                <span class="badge bg-secondary opacity-75 font-monospace">SDN</span>
+                            </div>
+                            <h3 class="project-card-title">SDN Network Simulation</h3>
+                            <p class="project-card-desc" data-en="Defined and designed an SDN architecture separating control and data planes, simulated in Packet Tracer." data-fr="Définit et conçu une architecture SDN séparant plan de contrôle et plan de données, simulée sous Packet Tracer.">
+                                Defined and designed an SDN architecture separating control and data planes, simulated in Packet Tracer.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Packet Tracer</span>
+                            <span class="tech-pill-dark">SDN Controller</span>
+                            <span class="tech-pill-dark">OpenFlow Concept</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. ResiliShare Platform -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="soc">
+                    <div class="project-card">
+                        <div>
+                            <div class="project-card-top">
+                                <div class="project-icon-box"><i class="fas fa-user-lock"></i></div>
+                                <span class="badge bg-secondary opacity-75 font-monospace">Web Sec</span>
+                            </div>
+                            <h3 class="project-card-title">ResiliShare Platform</h3>
+                            <p class="project-card-desc" data-en="Web platform for cybersecurity awareness featuring interactive quizzes, malicious link detection, and secure role-based file sharing." data-fr="Plateforme web dédiée à la sensibilisation à la cybersécurité avec quiz interactifs, analyse d'URL malveillantes et partage sécurisé de fichiers.">
+                                Web platform for cybersecurity awareness featuring interactive quizzes, malicious link detection, and secure role-based file sharing.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tech-pill-dark">Laravel MVC</span>
+                            <span class="tech-pill-dark">PHP</span>
+                            <span class="tech-pill-dark">Link Scanner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Technical Competencies" data-fr="Compétences Techniques">Technical Competencies</span>
+                <h2 class="section-title" data-en="Skills & Expertise Matrix" data-fr="Matrice de Compétences">Skills & Expertise Matrix</h2>
+                <p class="section-desc" data-en="Core domains mastered across offensive security, defensive operations, SIEM, and networks." data-fr="Domaines fondamentaux maîtrisés en sécurité offensive, opérations défensives, SIEM et réseaux.">
+                    Core domains mastered across offensive security, defensive operations, SIEM, and networks.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-group-box">
+                        <div class="skill-group-title">
+                            <i class="fas fa-skull-crossbones"></i>
+                            <span data-en="Offensive & Detection" data-fr="Offensive & Détection">Offensive & Detection</span>
+                        </div>
+                        <div>
+                            <span class="skill-pill">Ethical Hacking</span>
+                            <span class="skill-pill">Pentesting</span>
+                            <span class="skill-pill">Vulnerability Analysis</span>
+                            <span class="skill-pill">Malware Analysis</span>
+                            <span class="skill-pill">TryHackMe Top 4%</span>
+                            <span class="skill-pill">CTF Player</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-group-box">
+                        <div class="skill-group-title">
+                            <i class="fas fa-tower-broadcast"></i>
+                            <span data-en="SOC & SIEM Operations" data-fr="SOC & SIEM">SOC & SIEM Operations</span>
+                        </div>
+                        <div>
+                            <span class="skill-pill">Splunk</span>
+                            <span class="skill-pill">Alert Investigation</span>
+                            <span class="skill-pill">Log Parsing</span>
+                            <span class="skill-pill">Phishing Email Analysis</span>
+                            <span class="skill-pill">Threat Intelligence</span>
+                            <span class="skill-pill">MITRE ATT&CK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-group-box">
+                        <div class="skill-group-title">
+                            <i class="fas fa-network-wired"></i>
+                            <span data-en="Networks & Infrastructure" data-fr="Réseaux & Infrastructure">Networks & Infrastructure</span>
+                        </div>
+                        <div>
+                            <span class="skill-pill">TCP/IP</span>
+                            <span class="skill-pill">Firewalls (pfSense)</span>
+                            <span class="skill-pill">VPN (OpenVPN)</span>
+                            <span class="skill-pill">IDS/IPS (Suricata)</span>
+                            <span class="skill-pill">DMZ & NAT</span>
+                            <span class="skill-pill">TLS Encryption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="skill-group-box">
+                        <div class="skill-group-title">
+                            <i class="fas fa-fingerprint"></i>
+                            <span data-en="Systems & Identity (IAM)" data-fr="Systèmes & Identité">Systems & Identity (IAM)</span>
+                        </div>
+                        <div>
+                            <span class="skill-pill">Linux (Kali, Ubuntu)</span>
+                            <span class="skill-pill">Windows Server 2019</span>
+                            <span class="skill-pill">Microsoft Entra ID</span>
+                            <span class="skill-pill">Active Directory & NTFS</span>
+                            <span class="skill-pill">System Hardening</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="skill-group-box">
+                        <div class="skill-group-title">
+                            <i class="fas fa-code"></i>
+                            <span data-en="Programming & Scripting" data-fr="Programmation & Scripting">Programming & Scripting</span>
+                        </div>
+                        <div>
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">Shell / Bash</span>
+                            <span class="skill-pill">PowerShell</span>
+                            <span class="skill-pill">PHP / Laravel</span>
+                            <span class="skill-pill">Java</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">SQLite / SQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section (ALL 10 WITH OFFICIAL LOGOS) -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Official Accreditations" data-fr="Accréditations Officielles">Official Accreditations</span>
+                <h2 class="section-title" data-en="Certifications & Credentials" data-fr="Certifications & Diplômes">Certifications & Credentials</h2>
+                <p class="section-desc" data-en="Verified industry certifications from Cisco, IBM, and SkillFront." data-fr="Certifications reconnues par l'industrie délivrées par Cisco, IBM et SkillFront.">
+                    Verified industry certifications from Cisco, IBM, and SkillFront.
+                </p>
+            </div>
+
+            <div class="row g-3">
+                <!-- 1. ISO 27001 -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: var(--accent-cyan);">
+                            <i class="fas fa-award fa-2x"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h4>ISO/IEC 27001:2022 Information Security Associate</h4>
+                            <p>SkillFront · ISMS Standards</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. IBM Cybersecurity -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #38bdf8;">
+                            <svg viewBox="0 0 32 32" fill="currentColor">
+                                <path d="M4 6h8v2H4zm0 4h8v2H4zm0 4h8v2H4zm0 4h8v2H4zm0 4h8v2H4zm16-16h8v2h-8zm0 4h8v2h-8zm0 4h8v2h-8zm0 4h8v2h-8zm0 4h8v2h-8z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4 data-en="Cybersecurity Fundamentals" data-fr="Fondamentaux de la Cybersécurité">Cybersecurity Fundamentals</h4>
+                            <p>IBM · Enterprise Security</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Cisco Junior Cyber Analyst -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Junior Cybersecurity Analyst</h4>
+                            <p>Cisco · Security Operations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Cisco Ethical Hacker -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Ethical Hacker</h4>
+                            <p>Cisco · Offensive Security & Assessment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Cisco Endpoint Security -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Endpoint Security</h4>
+                            <p>Cisco · Host Defense & Protection</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Cisco Network Defense -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Network Defense</h4>
+                            <p>Cisco · Perimeter Security & Intrusion Prevention</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Cisco Cyberthreat Management -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Cyberthreat Management</h4>
+                            <p>Cisco · Incident Response & Governance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Cisco CCNA Intro to Networks -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>CCNA: Introduction to Networks</h4>
+                            <p>Cisco · Routing, Switching & Protocols</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Cisco Networking Devices and Initial Config -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: #00e5ff;">
+                            <svg viewBox="0 0 100 40" fill="currentColor">
+                                <rect x="5" y="15" width="6" height="15" rx="3"/>
+                                <rect x="18" y="8" width="6" height="22" rx="3"/>
+                                <rect x="31" y="2" width="6" height="28" rx="3"/>
+                                <rect x="44" y="8" width="6" height="22" rx="3"/>
+                                <rect x="57" y="15" width="6" height="15" rx="3"/>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Networking Devices and Initial Configuration</h4>
+                            <p>Cisco · Infrastructure Configuration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Cisco Python Essentials 2 -->
+                <div class="col-lg-6">
+                    <div class="cert-card-v2">
+                        <div class="cert-logo-wrap" style="color: var(--accent-amber);">
+                            <i class="fab fa-python fa-2x"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Python Essentials 2</h4>
+                            <p>Cisco · Advanced Scripting & Automation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certified Languages Section -->
+    <section id="languages" class="pt-0">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Linguistic Mastery" data-fr="Maîtrise Linguistique">Linguistic Mastery</span>
+                <h2 class="section-title" data-en="Certified Languages & Tests" data-fr="Langues Certifiées">Certified Languages & Tests</h2>
+                <p class="section-desc" data-en="Standardized language certifications verified by international testing organizations." data-fr="Niveaux certifiés par des organismes internationaux d'évaluation.">
+                    Standardized language certifications verified by international testing organizations.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- English -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="lang-card-v2">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0 fw-bold" data-en="English" data-fr="Anglais">English</h4>
+                            <span class="badge bg-primary text-white font-monospace">C1 Advanced</span>
+                        </div>
+                        <p class="text-secondary small mb-2" data-en="Fluent technical and professional communication, report writing, and collaboration." data-fr="Communication technique et professionnelle fluide, rédaction de rapports et travail d'équipe.">
+                            Fluent technical and professional communication, report writing, and collaboration.
+                        </p>
+                        <div class="badge-certified">
+                            <i class="fas fa-certificate"></i>
+                            <span data-en="Certified by EF SET" data-fr="Certifié par EF SET">Certified by EF SET</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- French -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="lang-card-v2">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0 fw-bold" data-en="French" data-fr="Français">French</h4>
+                            <span class="badge bg-primary text-white font-monospace">B2+ Upper-Intermediate</span>
+                        </div>
+                        <p class="text-secondary small mb-2" data-en="Full operational proficiency in engineering documentation, audits, and professional exchange." data-fr="Capacité opérationnelle complète pour la documentation technique, audits et échanges professionnels.">
+                            Full operational proficiency in engineering documentation, audits, and professional exchange.
+                        </p>
+                        <div class="badge-certified">
+                            <i class="fas fa-certificate"></i>
+                            <span data-en="Certified by Lenguia" data-fr="Certifié par Lenguia">Certified by Lenguia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arabic -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="lang-card-v2">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0 fw-bold" data-en="Arabic" data-fr="Arabe">Arabic</h4>
+                            <span class="badge bg-success text-white font-monospace" data-en="Native" data-fr="Maternelle">Native</span>
+                        </div>
+                        <p class="text-secondary small mb-2" data-en="Mother tongue. Excellent written and spoken communication." data-fr="Langue maternelle. Parfaite maîtrise orale et écrite.">
+                            Mother tongue. Excellent written and spoken communication.
+                        </p>
+                        <div class="badge-certified" style="color: #10b981; background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3);">
+                            <i class="fas fa-circle-check"></i>
+                            <span data-en="Native Speaker" data-fr="Langue Maternelle">Native Speaker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dedicated Download CV Section -->
+    <section id="download-cv">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" data-en="Curriculum Vitae" data-fr="Curriculum Vitae">Curriculum Vitae</span>
+                <h2 class="section-title" data-en="Download My Resume" data-fr="Télécharger Mon CV">Download My Resume</h2>
+                <p class="section-desc mx-auto" data-en="Select your preferred language version below to download the latest PDF resume or preview and print it directly." data-fr="Choisissez votre version linguistique ci-dessous pour télécharger le CV en PDF ou le visualiser et l'imprimer directement.">
+                    Select your preferred language version below to download the latest PDF resume or preview and print it directly.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- English Version -->
+                <div class="col-lg-5 col-md-6">
+                    <div class="cv-box-card">
+                        <div>
+                            <span style="font-size: 32px; margin-bottom: 12px; display: inline-block;">🇬🇧</span>
+                            <h3 class="cv-box-title">English Version</h3>
+                            <div class="cv-box-sub">CV_SAKHI_MOUAD_EN.pdf · C1 EF SET</div>
+                            <p class="cv-box-desc" data-en="Tailored for international teams and multinational opportunities. Highlights SOC/SIEM experience, MITRE ATT&CK pipelines, engineering background, and certifications." data-fr="Adapté pour les opportunités internationales. Met en valeur les expériences SOC/SIEM, pipelines MITRE ATT&CK, formation ingénieur et certifications.">
+                                Tailored for international teams and multinational opportunities. Highlights SOC/SIEM experience, MITRE ATT&CK pipelines, engineering background, and certifications.
+                            </p>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <a href="assets/cv/CV_SAKHI_MOUAD_EN.pdf" download="CV_SAKHI_MOUAD_EN.pdf" class="btn-cyber-primary justify-content-center" onclick="handleCvDownload(event, 'en', 'CV_SAKHI_MOUAD_EN.pdf')">
+                                <i class="fas fa-file-pdf"></i>
+                                <span data-en="Download English PDF" data-fr="Télécharger le PDF en Anglais">Download English PDF</span>
+                            </a>
+                            <button type="button" class="btn-cyber-outline justify-content-center" onclick="openCvModal('en')">
+                                <i class="fas fa-eye"></i>
+                                <span data-en="Quick Preview & Print" data-fr="Aperçu Rapide & Imprimer">Quick Preview & Print</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- French Version -->
+                <div class="col-lg-5 col-md-6">
+                    <div class="cv-box-card">
+                        <div>
+                            <span style="font-size: 32px; margin-bottom: 12px; display: inline-block;">🇫🇷</span>
+                            <h3 class="cv-box-title">Version Française</h3>
+                            <div class="cv-box-sub">CV_SAKHI_MOUAD_FR.pdf · B2+ Lenguia</div>
+                            <p class="cv-box-desc" data-en="Tailored for Moroccan and French-speaking recruiters. Detailed description of the PFA internship at Securozen, projects with links, and verified skills." data-fr="Conçu pour les recruteurs francophones et les entreprises au Maroc. Description détaillée du stage PFA chez Securozen, projets avec liens et compétences vérifiées.">
+                                Conçu pour les recruteurs francophones et les entreprises au Maroc. Description détaillée du stage PFA chez Securozen, projets avec liens et compétences vérifiées.
+                            </p>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <a href="assets/cv/CV_SAKHI_MOUAD_FR.pdf" download="CV_SAKHI_MOUAD_FR.pdf" class="btn-cyber-primary justify-content-center" onclick="handleCvDownload(event, 'fr', 'CV_SAKHI_MOUAD_FR.pdf')">
+                                <i class="fas fa-file-pdf"></i>
+                                <span data-en="Download French PDF" data-fr="Télécharger le PDF en Français">Télécharger le PDF en Français</span>
+                            </a>
+                            <button type="button" class="btn-cyber-outline justify-content-center" onclick="openCvModal('fr')">
+                                <i class="fas fa-eye"></i>
+                                <span data-en="Quick Preview & Print" data-fr="Aperçu Rapide & Imprimer">Quick Preview & Print</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Get in Touch" data-fr="Contact">Get in Touch</span>
+                <h2 class="section-title" data-en="Let's Connect" data-fr="Contactez-Moi">Let's Connect</h2>
+                <p class="section-desc" data-en="Seeking a motivated final-year cybersecurity engineering intern? Let's discuss." data-fr="À la recherche d'un stagiaire ingénieur en cybersécurité motivé ? Échangeons dès maintenant.">
+                    Seeking a motivated final-year cybersecurity engineering intern? Let's discuss.
+                </p>
+            </div>
+
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-5">
+                    <div class="contact-box-dark h-100">
+                        <div class="contact-info-pill">
+                            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="text-muted small fw-bold" data-en="Academic Email" data-fr="Email Académique">Academic Email</div>
+                                <a href="mailto:m.sakhi7563@uca.ac.ma" class="text-white fw-bold text-decoration-none">m.sakhi7563@uca.ac.ma</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-pill">
+                            <div class="contact-info-icon"><i class="fas fa-at"></i></div>
+                            <div>
+                                <div class="text-muted small fw-bold" data-en="Personal Email" data-fr="Email Personnel">Personal Email</div>
+                                <a href="mailto:sk.mouad1@gmail.com" class="text-white fw-bold text-decoration-none">sk.mouad1@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-pill">
+                            <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <div class="text-muted small fw-bold" data-en="Phone & WhatsApp" data-fr="Téléphone & WhatsApp">Phone & WhatsApp</div>
+                                <a href="tel:+212605115256" class="text-white fw-bold text-decoration-none">+212 605115256</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-pill">
+                            <div class="contact-info-icon"><i class="fas fa-location-dot"></i></div>
+                            <div>
+                                <div class="text-muted small fw-bold" data-en="Location" data-fr="Localisation">Location</div>
+                                <span class="text-white fw-bold" data-en="Marrakech, Morocco" data-fr="Marrakech, Maroc">Marrakech, Morocco</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-top border-secondary border-opacity-25 d-flex gap-3">
+                            <a href="https://github.com/Mouad-sk" target="_blank" class="social-link-circle">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/mouad-sakhi-223265330" target="_blank" class="social-link-circle">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://wa.me/212605115256" target="_blank" class="social-link-circle">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="contact-box-dark">
+                        <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="contact-input-dark" id="senderName" placeholder="Your Full Name" data-placeholder-en="Your Full Name" data-placeholder-fr="Votre Nom Complet" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="contact-input-dark" id="senderEmail" placeholder="Your Email Address" data-placeholder-en="Your Email Address" data-placeholder-fr="Votre Adresse Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="contact-input-dark" id="senderSubject" placeholder="Subject (e.g., PFE Internship Opportunity)" data-placeholder-en="Subject (e.g., PFE Internship Opportunity)" data-placeholder-fr="Objet (ex. Opportunité de Stage PFE)" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="contact-input-dark" id="senderMessage" rows="5" placeholder="Your message..." data-placeholder-en="Your message..." data-placeholder-fr="Votre message..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-cyber-primary w-100 justify-content-center">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        <span data-en="Send Message" data-fr="Envoyer le Message">Send Message</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="mb-2">
+                <span class="text-white fw-bold">SAKHI MOUAD</span> · <span data-en="Final-Year IT Security Engineering Student · Seeking PFE Internship" data-fr="Élève Ingénieur en Sécurité Informatique · Recherche de Stage PFE">Final-Year IT Security Engineering Student · Seeking PFE Internship</span>
+            </div>
+            <p class="mb-0" data-en="© 2026 Sakhi Mouad. All rights reserved. Bilingual Portfolio & Cyber Defense." data-fr="© 2026 Sakhi Mouad. Tous droits réservés. Portfolio Bilingue & Cyberdéfense.">
+                © 2026 Sakhi Mouad. All rights reserved. Bilingual Portfolio & Cyber Defense.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Printable CV Modal -->
+    <div class="modal fade" id="cvModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-cv-dialog">
+            <div class="modal-content modal-cv-content">
+                <div class="modal-cv-header">
+                    <div class="d-flex align-items-center gap-3">
+                        <h5 class="modal-title mb-0 text-white" id="cvModalTitle">Curriculum Vitae Preview</h5>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-warning" id="modalBtnEn" onclick="renderModalCvContent('en')">EN</button>
+                            <button class="btn btn-outline-warning" id="modalBtnFr" onclick="renderModalCvContent('fr')">FR</button>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-warning btn-sm fw-bold" onclick="printModalCv()">
+                            <i class="fas fa-print me-1"></i> <span data-en="Print / Save PDF" data-fr="Imprimer / Sauvegarder PDF">Print / Save PDF</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+                            <i class="fas fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-body p-0">
+                    <div id="printable-cv-area">
+                        <div class="cv-paper" id="cvPaperContent">
+                            <!-- Populated dynamically by JS for EN / FR -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ------------------ Subtle Celestial Particles / Gentle Ambient Snow (Delicate & Noticeable) ------------------
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const particles = [];
+            const particleCount = 44; // Balanced count: clearly visible yet graceful and non-distracting
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.0 + 0.6, // 0.6px - 1.6px (crisp, delicate flakes/dust)
+                    speedY: Math.random() * 0.28 + 0.12, // Gentle downward drift
+                    swayOffset: Math.random() * Math.PI * 2,
+                    swaySpeed: Math.random() * 0.014 + 0.005,
+                    opacity: Math.random() * 0.26 + 0.18, // Visible soft opacity (0.18 - 0.44)
+                    isCyan: Math.random() > 0.70
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.y += p.speedY;
+                    p.swayOffset += p.swaySpeed;
+                    p.x += Math.sin(p.swayOffset) * 0.25;
+
+                    if (p.y > height) {
+                        p.y = -6;
+                        p.x = Math.random() * width;
+                    }
+                    if (p.x > width) p.x = 0;
+                    if (p.x < 0) p.x = width;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.isCyan 
+                        ? `rgba(0, 229, 255, ${p.opacity})` 
+                        : `rgba(235, 245, 255, ${p.opacity})`;
+                    ctx.fill();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ------------------ Dynamic Moving Glowing Nav Indicator & Scrollspy ------------------
+        (function() {
+            const navList = document.getElementById('navLinksList');
+            const navIndicator = document.getElementById('navGlowIndicator');
+            if (!navList || !navIndicator) return;
+
+            const navLinks = navList.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            let activeLink = navList.querySelector('.nav-link.active') || navLinks[0];
+
+            function updateIndicatorPosition(targetLink) {
+                if (!targetLink || !navIndicator || !navList) return;
+                // Only active on desktop/tablet layout (>= 992px)
+                if (window.innerWidth < 992) {
+                    navIndicator.style.opacity = '0';
+                    return;
+                }
+
+                const linkRect = targetLink.getBoundingClientRect();
+                const listRect = navList.getBoundingClientRect();
+
+                // Center glowing line under the text
+                const padding = 8;
+                const leftPos = (linkRect.left - listRect.left) + padding;
+                const width = Math.max(linkRect.width - (padding * 2), 22);
+
+                navIndicator.style.left = `${leftPos}px`;
+                navIndicator.style.width = `${width}px`;
+                navIndicator.style.opacity = '1';
+            }
+
+            window.updateNavIndicator = updateIndicatorPosition;
+
+            // Click handling - smooth line glide
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    activeLink = this;
+                    updateIndicatorPosition(this);
+                });
+
+                // Hover magnetic glide
+                link.addEventListener('mouseenter', function() {
+                    updateIndicatorPosition(this);
+                });
+            });
+
+            // Return to active item when mouse leaves the navbar
+            navList.addEventListener('mouseleave', function() {
+                const currentActive = navList.querySelector('.nav-link.active') || activeLink;
+                if (currentActive) {
+                    updateIndicatorPosition(currentActive);
+                }
+            });
+
+            // Scrollspy: update moving line as user scrolls through sections
+            let ticking = false;
+            function onScrollSpy() {
+                const scrollPos = window.scrollY + 160;
+                let currentSectionId = '';
+
+                sections.forEach(sec => {
+                    const top = sec.offsetTop;
+                    const height = sec.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentSectionId = sec.getAttribute('id');
+                    }
+                });
+
+                // When near top of page, anchor to #home
+                if (window.scrollY < 100) {
+                    currentSectionId = 'home';
+                }
+
+                if (currentSectionId) {
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href === `#${currentSectionId}`) {
+                            if (!link.classList.contains('active')) {
+                                navLinks.forEach(l => l.classList.remove('active'));
+                                link.classList.add('active');
+                                activeLink = link;
+                                updateIndicatorPosition(link);
+                            }
+                        }
+                    });
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(onScrollSpy);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                const currentActive = navList.querySelector('.nav-link.active') || activeLink;
+                updateIndicatorPosition(currentActive);
+            });
+
+            // Initialize position after layout render
+            window.addEventListener('load', () => {
+                const currentActive = navList.querySelector('.nav-link.active') || navLinks[0];
+                updateIndicatorPosition(currentActive);
+            });
+            setTimeout(() => {
+                const currentActive = navList.querySelector('.nav-link.active') || navLinks[0];
+                updateIndicatorPosition(currentActive);
+            }, 150);
+        })();
+
+        // ------------------ Tasteful Scroll Reveal & Micro-Animations ------------------
+        (function() {
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    rootMargin: '0px 0px -40px 0px',
+                    threshold: 0.08
+                });
+
+                document.querySelectorAll('.dark-card, .exp-card, .project-card, .cert-card-grid, .cyber-terminal').forEach(el => {
+                    el.classList.add('reveal-item');
+                    revealObserver.observe(el);
+                });
+            }
+        })();
+
+        // ------------------ Typewriter Effect for Profile ------------------
+        const rolesEn = [
+            "Final-Year IT Security Engineering Student",
+            "Top 4% TryHackMe · Active CTF Player",
+            "SOC Operations & SIEM Detection (Splunk)",
+            "Threat Hunting & MITRE ATT&CK Mapping",
+            "Applied Cryptography & Malware Triage"
+        ];
+
+        const rolesFr = [
+            "Étudiant Ingénieur en Sécurité Informatique",
+            "Top 4% sur TryHackMe · Joueur CTF Actif",
+            "Opérations SOC & Détection SIEM (Splunk)",
+            "Threat Hunting & Corrélation MITRE ATT&CK",
+            "Cryptographie Appliquée & Analyse de Malwares"
+        ];
+
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typewriterTimeout;
+
+        function updateTypewriter() {
+            const list = (currentLang === 'fr') ? rolesFr : rolesEn;
+            const currentString = list[roleIndex % list.length];
+            const target = document.getElementById('typewriterTarget');
+            if (!target) return;
+
+            if (isDeleting) {
+                target.textContent = currentString.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                target.textContent = currentString.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 28 : 60;
+
+            if (!isDeleting && charIndex === currentString.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex++;
+                typeSpeed = 350;
+            }
+
+            clearTimeout(typewriterTimeout);
+            typewriterTimeout = setTimeout(updateTypewriter, typeSpeed);
+        }
+
+        // ------------------ Global Language State & Translation ------------------
+        let currentLang = 'en';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            try { localStorage.setItem('user_lang_pref', lang); } catch (e) {}
+
+            document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text !== null) {
+                    if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') {
+                        el.textContent = text;
+                    }
+                }
+            });
+
+            document.querySelectorAll('[data-placeholder-en], [data-placeholder-fr]').forEach(input => {
+                const placeholder = input.getAttribute(`data-placeholder-${lang}`);
+                if (placeholder !== null) {
+                    input.placeholder = placeholder;
+                }
+            });
+
+            const btnEn = document.getElementById('btn-lang-en');
+            const btnFr = document.getElementById('btn-lang-fr');
+            if (btnEn && btnFr) {
+                btnEn.classList.toggle('active', lang === 'en');
+                btnFr.classList.toggle('active', lang === 'fr');
+            }
+
+            document.documentElement.lang = lang;
+
+            // Restart typewriter with language immediately
+            charIndex = 0;
+            isDeleting = false;
+            updateTypewriter();
+
+            // Readjust glowing nav indicator width & position for new language text
+            setTimeout(() => {
+                const navList = document.getElementById('navLinksList');
+                if (navList && window.updateNavIndicator) {
+                    const currentActive = navList.querySelector('.nav-link.active');
+                    if (currentActive) window.updateNavIndicator(currentActive);
+                }
+            }, 60);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let saved = 'en';
+            try { saved = localStorage.getItem('user_lang_pref') || 'en'; } catch(e) {}
+            changeLanguage(saved);
+        });
+
+        // ------------------ Project Category Filtering ------------------
+        document.querySelectorAll('.project-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.project-filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.getAttribute('data-filter');
+
+                document.querySelectorAll('.project-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ------------------ Contact Form Handler ------------------
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const msg = currentLang === 'en' 
+                ? `Thank you ${name}! Your message has been prepared. You can also reach me directly at m.sakhi7563@uca.ac.ma or WhatsApp (+212 605115256).`
+                : `Merci ${name} ! Votre message a bien été pris en compte. Vous pouvez aussi me joindre directement sur m.sakhi7563@uca.ac.ma ou WhatsApp (+212 605115256).`;
+            alert(msg);
+            document.getElementById('portfolioContactForm').reset();
+        }
+
+        // ------------------ CV Modal Preview & Print Logic ------------------
+        let modalActiveLang = 'en';
+
+        function openCvModal(lang) {
+            modalActiveLang = lang || currentLang;
+            renderModalCvContent(modalActiveLang);
+            const modal = new bootstrap.Modal(document.getElementById('cvModal'));
+            modal.show();
+        }
+
+        function renderModalCvContent(lang) {
+            modalActiveLang = lang;
+            const container = document.getElementById('cvPaperContent');
+            const btnEn = document.getElementById('modalBtnEn');
+            const btnFr = document.getElementById('modalBtnFr');
+
+            if (lang === 'en') {
+                btnEn.className = 'btn btn-warning';
+                btnFr.className = 'btn btn-outline-warning';
+
+                container.innerHTML = `
+                    <div class="text-center mb-3">
+                        <h1 style="font-size: 26px; font-weight: 800;">SAKHI MOUAD</h1>
+                        <div style="font-weight: 600; color: #0284c7; font-size: 14px;">Final-Year IT Security Engineering Student · Top 4% TryHackMe · Seeking PFE Internship</div>
+                        <div style="font-size: 12.5px; color: #64748b; margin-top: 6px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                            📍 Marrakech, Maroc &nbsp;|&nbsp; ✉ m.sakhi7563@uca.ac.ma &nbsp;|&nbsp; 📞 +212 605115256<br>
+                            <a href="https://github.com/Mouad-sk" target="_blank" style="color: #0284c7;">GitHub</a> | 
+                            <a href="https://www.linkedin.com/in/mouad-sakhi-223265330" target="_blank" style="color: #0284c7;">LinkedIn</a> | 
+                            <a href="#home" style="color: #0284c7;">Portfolio</a>
+                        </div>
+                    </div>
+
+                    <div class="cv-sec-title">PROFILE</div>
+                    <p>Final-year engineering student in IT Security (FST Marrakech, Cadi Ayyad University), seeking a final-year internship in cybersecurity to put my skills into practice within an expert team. Active CTF player ranked in the Top 4% on TryHackMe. Combining rigorous practice in offensive and defensive security, network security, incident detection and investigation (SIEM, SOC), and malware analysis. Rigorous, curious, and eager to learn more.</p>
+
+                    <div class="cv-sec-title">EDUCATION</div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Engineering Degree — Information Technology Security | FST, Cadi Ayyad University, Marrakech</span>
+                        <span>2024 – Present</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 3px;">
+                        <span>DEUST MIPC (Maths, Computer Science, Physics, Chemistry) | FST, Cadi Ayyad University, Marrakech</span>
+                        <span>2022 – 2024</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 3px;">
+                        <span>International Baccalaureate — Mathematical Sciences B | Lycée Abi El Abbas Sebti, Marrakech</span>
+                        <span>2022</span>
+                    </div>
+
+                    <div class="cv-sec-title">PROFESSIONAL EXPERIENCE</div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>PFA Internship — SOC Operations, SIEM & Threat Detection | Securozen, Remote</span>
+                        <span>Aug – Sept 2026</span>
+                    </div>
+                    <ul style="margin-top: 3px; padding-left: 18px;">
+                        <li>Automated security log analysis (parsing, IOC enrichment, event correlation) to generate MITRE ATT&CK-mapped incidents.</li>
+                        <li>Implemented attack-path prediction with risk scoring to assess potential lateral movement and impact across enterprise assets.</li>
+                        <li>Integrated centralized SQLite storage, a REST API, a monitoring dashboard, and automated incident reporting.</li>
+                        <li>Validated the end-to-end detection pipeline using real authentication logs generated in an isolated lab simulation.</li>
+                    </ul>
+
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 8px;">
+                        <span>Introductory Internship — Web Development & IT Security | ORIENTAL GROUP, Marrakech</span>
+                        <span>Jun – Jul 2025</span>
+                    </div>
+                    <ul style="margin-top: 3px; padding-left: 18px;">
+                        <li>Contributed to the website's security assessment and identified risks related to themes, extensions, and components used.</li>
+                        <li>Implemented application security best practices and configuration hardening to reduce the attack surface.</li>
+                        <li>Participated in remediating identified issues, strengthening the website's reliability and security.</li>
+                    </ul>
+
+                    <div class="cv-sec-title">PROJECTS</div>
+                    <p style="margin-bottom: 4px;"><strong>DNS Exfil Detect</strong> | Python · Scapy · Scikit-learn · SQLite — <a href="https://github.com/Mouad-sk/DNS_Exfil_Detect" target="_blank" style="color: #0284c7;">DNS_Exfil_Detect</a><br>
+                    • DNS tunneling detector combining a rule engine and an ML model (RandomForest/XGBoost) on per-query and sliding-window features; SIEM export (CEF/syslog), REST API, monitoring dashboard.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Yara-Triage</strong> | Python · YARA — <a href="https://github.com/Mouad-sk/Yara_Project" target="_blank" style="color: #0284c7;">Yara_Project</a><br>
+                    • Static malware triage tool: hashing, PE structure analysis, IOC extraction, YARA rules, and an explainable risk score mapped to MITRE ATT&CK.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Threat Hunting Library</strong> | Sigma · Splunk/KQL/EQL — <a href="https://github.com/Mouad-sk/Threat_Hunting_Library" target="_blank" style="color: #0284c7;">Threat_Hunting_Library</a><br>
+                    • Library of ten MITRE ATT&CK-mapped hunts with Sigma rules, cross-platform queries, and an automated validator.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Python Security Toolkit</strong> | Python — <a href="https://github.com/Mouad-sk/Security_Toolkit" target="_blank" style="color: #0284c7;">Security_Toolkit</a><br>
+                    • Authentication log analyzer, network scanner, directory brute-force, password strength checker, file encryption tool.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Secure Enterprise Network Architecture</strong> | pfSense · OpenVPN · Suricata · VirtualBox<br>
+                    • Deployed a segmented network infrastructure (DMZ, NAT): pfSense firewall, site-to-site OpenVPN (TLS/certificates), Suricata IDS/IPS, hardened Apache and vsftpd services.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Windows Server 2019 Administration</strong> | PowerShell · DHCP · DNS · IIS<br>
+                    • Managed local accounts/groups and role-based NTFS permissions; deployed DHCP, DNS (forward/reverse zones), and IIS roles.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Zero-Knowledge Proof — Applied Cryptography</strong> | Kali Linux<br>
+                    • Implemented a Zero-Knowledge Proof protocol (Schnorr) and simulated a replay attack to validate cryptographic robustness.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>SDN (Software-Defined Networking)</strong> | Packet Tracer<br>
+                    • Designed an SDN architecture separating control and data planes, simulated in Packet Tracer.</p>
+
+                    <div class="cv-sec-title">TECHNICAL SKILLS</div>
+                    <p style="margin-bottom: 4px;"><strong>Offensive & Detection:</strong> Ethical hacking, vulnerability analysis, malware analysis, TryHackMe Top 4%, CTF Player<br>
+                    <strong>SOC & SIEM:</strong> Splunk, alert investigation, log analysis, phishing email analysis, Threat Intelligence<br>
+                    <strong>Networking & Infrastructure:</strong> TCP/IP, firewalls (pfSense), VPN (OpenVPN), IDS/IPS (Suricata), DMZ/NAT, encryption (TLS)<br>
+                    <strong>Systems & Identity:</strong> Linux (Kali, Ubuntu), Windows Server, Microsoft Entra ID (identity & access management)<br>
+                    <strong>Programming:</strong> Python, Shell/Bash, PowerShell, PHP/Laravel, Java, JavaScript</p>
+
+                    <div class="cv-sec-title">CERTIFICATIONS</div>
+                    <p>ISO/IEC 27001:2022 Information Security Associate (SkillFront) · Cybersecurity Fundamentals (IBM)<br>
+                    Cisco: Networking Devices and Initial Configuration · CCNA: Introduction to Networks · Python Essentials 2 · Cyberthreat Management · Network Defense · Endpoint Security · Ethical Hacker · Junior Cybersecurity Analyst</p>
+
+                    <div class="cv-sec-title">LANGUAGES & STRENGTHS</div>
+                    <p><strong>Languages:</strong> Arabic (native) · English C1 (EF SET Certified) · French B2+ (Lenguia Certified)<br>
+                    <strong>Strengths:</strong> Rigor, curiosity, autonomy, teamwork, punctuality</p>
+                `;
+            } else {
+                btnFr.className = 'btn btn-warning';
+                btnEn.className = 'btn btn-outline-warning';
+
+                container.innerHTML = `
+                    <div class="text-center mb-3">
+                        <h1 style="font-size: 26px; font-weight: 800;">SAKHI MOUAD</h1>
+                        <div style="font-weight: 600; color: #0284c7; font-size: 14px;">Étudiant Ingénieur en Sécurité Information Technologie · Top 4% TryHackMe · Recherche de Stage PFE</div>
+                        <div style="font-size: 12.5px; color: #64748b; margin-top: 6px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                            📍 Marrakech, Maroc &nbsp;|&nbsp; ✉ m.sakhi7563@uca.ac.ma &nbsp;|&nbsp; 📞 +212 605115256<br>
+                            <a href="https://github.com/Mouad-sk" target="_blank" style="color: #0284c7;">GitHub</a> | 
+                            <a href="https://www.linkedin.com/in/mouad-sakhi-223265330" target="_blank" style="color: #0284c7;">LinkedIn</a> | 
+                            <a href="#home" style="color: #0284c7;">Portfolio</a>
+                        </div>
+                    </div>
+
+                    <div class="cv-sec-title">PROFIL</div>
+                    <p>Étudiant ingénieur en dernière année Sécurité Information Technologie (FST Marrakech, Université Cadi Ayyad), à la recherche d'un stage de fin d'études en cybersécurité afin de mettre mes compétences en pratique au sein d’une équipe d’expertise. Joueur CTF actif classé dans le Top 4% sur TryHackMe. Combinant une pratique rigoureuse de la sécurité offensive et défensive, sécurité réseau, détection et investigation d'incidents (SIEM, SOC) et analyse de malwares. Rigoureux, curieux et motivé à apprendre plus.</p>
+
+                    <div class="cv-sec-title">FORMATION</div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Cycle Ingénieur — Sécurité de l'Information et Technologie (SIT) | FST, UCA, Marrakech</span>
+                        <span>2024 – Présent</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 3px;">
+                        <span>DEUST MIPC (Mathématiques, Informatique, Physique et Chimie) | FST, UCA, Marrakech</span>
+                        <span>2022 – 2024</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 3px;">
+                        <span>Baccalauréat International — Sciences Mathématiques B | Lycée Abi El Abbas Sebti, Marrakech</span>
+                        <span>2022</span>
+                    </div>
+
+                    <div class="cv-sec-title">EXPÉRIENCE PROFESSIONNELLE</div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Stage PFA — Opérations SOC, SIEM & Détection de Menaces | Securozen, Remote</span>
+                        <span>Août – Sept. 2026</span>
+                    </div>
+                    <ul style="margin-top: 3px; padding-left: 18px;">
+                        <li>Automatisé l'analyse des logs de sécurité (parsing, enrichissement IOC, corrélation d'événements) pour générer des incidents mappés MITRE ATT&CK.</li>
+                        <li>Implémenté une prédiction de chemins d'attaque avec scoring de risque pour évaluer les mouvements latéraux potentiels et leur impact sur les actifs.</li>
+                        <li>Intégré un stockage centralisé SQLite, une API REST, un dashboard de supervision et un reporting d'incidents automatisé.</li>
+                        <li>Validé le pipeline de détection de bout en bout à l'aide de logs d'authentification réels générés dans un lab isolé.</li>
+                    </ul>
+
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 8px;">
+                        <span>Stage d'Initiation — Développement Web et Sécurité Informatique | ORIENTAL GROUP, Marrakech</span>
+                        <span>Juin – Juil. 2025</span>
+                    </div>
+                    <ul style="margin-top: 3px; padding-left: 18px;">
+                        <li>Contribué à l'évaluation de la sécurité du site web et à l'identification des risques liés aux thèmes, extensions et composants utilisés.</li>
+                        <li>Mis en œuvre des bonnes pratiques de sécurité applicative et de durcissement de la configuration afin de réduire la surface d'attaque.</li>
+                        <li>Participé à la remédiation des anomalies identifiées, renforçant la fiabilité et la sécurité du site web.</li>
+                    </ul>
+
+                    <div class="cv-sec-title">PROJETS</div>
+                    <p style="margin-bottom: 4px;"><strong>DNS Exfil Detect</strong> | Python · Scapy · Scikit-learn · SQLite — <a href="https://github.com/Mouad-sk/DNS_Exfil_Detect" target="_blank" style="color: #0284c7;">DNS_Exfil_Detect</a><br>
+                    • Détecteur de tunneling DNS combinant moteur de règles et modèle ML (RandomForest/XGBoost) sur des features par requête et par fenêtre glissante ; export SIEM (CEF/syslog), API REST, dashboard de supervision.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Yara-Triage</strong> | Python · YARA — <a href="https://github.com/Mouad-sk/Yara_Project" target="_blank" style="color: #0284c7;">Yara_Project</a><br>
+                    • Outil de triage statique de malwares : hachage, analyse de structure PE, extraction d'IOC, règles YARA et score de risque explicable avec mapping MITRE ATT&CK.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Threat Hunting Library</strong> | Sigma · Splunk/KQL/EQL — <a href="https://github.com/Mouad-sk/Threat_Hunting_Library" target="_blank" style="color: #0284c7;">Threat_Hunting_Library</a><br>
+                    • Bibliothèque de dix hunts mappés MITRE ATT&CK avec règles Sigma, requêtes multi-plateformes et validateur automatisé.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Boîte à outils Python sécurité</strong> | Python — <a href="https://github.com/Mouad-sk/Security_Toolkit" target="_blank" style="color: #0284c7;">Security_Toolkit</a><br>
+                    • Analyseur de logs d'authentification, scanner réseau, outil de brute-force de répertoires, vérificateur de robustesse de mots de passe, chiffrement de fichiers.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Architecture Réseau Sécurisée d’Entreprise</strong> | pfSense · OpenVPN · Suricata · VirtualBox<br>
+                    • Déployé une infrastructure réseau segmentée (DMZ, NAT) : pare-feu pfSense, VPN site-à-site OpenVPN (TLS/certificats), IDS/IPS Suricata, services Apache et vsftpd sécurisés.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Administration Windows Server 2019</strong> | PowerShell · DHCP · DNS · IIS<br>
+                    • Administré comptes/groupes locaux et permissions NTFS par rôle ; déployé les rôles DHCP, DNS (zones directes/inversées) et IIS.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Zero Knowledge Proof — Cryptographie Appliquée</strong> | Kali Linux<br>
+                    • Implémenté un protocole Zero-Knowledge Proof et simulé une attaque par rejeu pour valider la robustesse cryptographique.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>Réseau SDN (Software-Defined Networking)</strong> | Packet Tracer<br>
+                    • Définit et Conçu une architecture SDN séparant plan de contrôle et plan de données, simulée sous Packet Tracer.</p>
+
+                    <div class="cv-sec-title">COMPÉTENCES TECHNIQUES</div>
+                    <p style="margin-bottom: 4px;"><strong>Offensive & Détection :</strong> Ethical Hacking, pentesting, analyse de vulnérabilités, analyse de malwares, Top 4% TryHackMe, Joueur CTF<br>
+                    <strong>SOC & SIEM :</strong> Splunk, investigation d'alertes, analyse de logs, analyse d'emails de phishing, Threat Intelligence<br>
+                    <strong>Réseaux & Infrastructure :</strong> TCP/IP, Firewalls (pfSense), VPN (OpenVPN), IDS/IPS (Suricata), DMZ/NAT, chiffrement (TLS)<br>
+                    <strong>Systèmes & Identité :</strong> Linux (Kali, Ubuntu), Windows Server, Microsoft Entra ID (gestion des identités et accès)<br>
+                    <strong>Développement :</strong> Python, Shell/Bash, PowerShell, Java, JavaScript</p>
+
+                    <div class="cv-sec-title">CERTIFICATIONS</div>
+                    <p>ISO/IEC 27001 :2022 Information Security Associate (SkillFront) · Fondamentaux de la Cybersécurité (IBM)<br>
+                    Cisco: Networking Devices and Initial Configuration · CCNA: Introduction to Networks · Python Essentials 2 · Cyberthreat Management · Network Defense · Endpoint Security · Ethical Hacker · Junior Cybersecurity Analyst</p>
+
+                    <div class="cv-sec-title">LANGUES & QUALITÉS</div>
+                    <p><strong>Langues :</strong> Arabe (natif) · Anglais C1 (Certifié EF SET) · Français B2+ (Certifié Lenguia)<br>
+                    <strong>Atouts :</strong> Rigueur, curiosité, autonomie, travail en équipe, ponctuel</p>
+                `;
+            }
+        }
+
+        function printModalCv() {
+            window.print();
+        }
+
+        function handleCvDownload(event, lang, filename) {
+            fetch(`assets/cv/${filename}`, { method: 'HEAD' })
+                .then(res => {
+                    if (!res.ok) {
+                        event.preventDefault();
+                        openCvModal(lang);
+                    }
+                })
+                .catch(() => {
+                    event.preventDefault();
+                    openCvModal(lang);
+                });
+        }
+    </script>
+</body>
+</html>
